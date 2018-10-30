@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from winsound import *
 import os #Se usa solo para el botón Ayuda del menu para abrir el manual de usuario
+#tacataca
 
 posc=() #Ayuda a seleccionar un label
 creado="No" #Se usa para saber si existe un juego creado
