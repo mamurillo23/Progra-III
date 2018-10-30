@@ -12,41 +12,20 @@ repetidos=[] #Acumula los juegos que van saliendo para que no salgan repetidos
 count=0 #Se usa para el cronometro y timer
 pausado="No" #Para saber si el juego esta pausado o no (cronometro y timer)
 tipo="Timer" #Ayuda cuando el timer tiene que pasar a cronometro
-dific='' #Contiene el nivel de dificultad
-jugadas = []
-btn = 0
-def cargarArchivo(archivo):
-    strResultado = leer(archivo)
-    if strResultado != "":
-        return eval(strResultado)
-    else:
-        return []
-
-def leer(archivo):
-    fo = open(archivo, "r")
-    resultado = fo.read()
-    fo.close()
-    return resultado
-
-def guardar(archivo, strLista):
-    fo = open(archivo, "w")
-    fo.write(strLista)
-    fo.close()
-
-plantilla_top10 = ['','',0,0,0]
-
-def obtenerPlantillaTop10 ():
-    global plantilla_top10
-    return plantilla_top10[:]
+proceso=0
+l1=l2=l3=l4=l5=l6=l7=l8=l9=l10=l11=l12=l13=l14=l15=l16=l17=l18=l19=l20=l21=l22=l23=l24=l25=l26=l27=l28=l29=l30=l31=l32=l33=l34=l35=l36=l37=l38=l39=l40=l41=l42=\
+l43=l44=l45=l46=l47=l48=l49=l50=l51=l52=l53=l54=l55=l56=l57=l58=l59=l60=l61=l62=l63=l64=l65=l66=l67=l68=l69=l70=l71=l72=l73=l74=l75=l76=l77=l78=l79=l80=l81=0
 
 def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
     ventana.destroy()
     ventana= Tk()
     ventana.title("Jugar Kenken")
     ventana.geometry("1366x700")
-    ventana.config(bg= '#4682b4')
+    ventana.config(bg="purple1")
 
-    global posc,juego,listo,creado,repetidos,count,pausado,jugadas,btn
+    global posc,juego,listo,creado,repetidos,count,pausado,proceso
+    global l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,l40,l41,\
+    l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,l79,l80,l81
     #Siempre se inicializan de esta forma
     posc=()
     repetidos=[]
@@ -56,16 +35,24 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
     count=0
     pausado="No"
     tipo="Timer"
+    proceso=0
+    l1=l2=l3=l4=l5=l6=l7=l8=l9=l10=l11=l12=l13=l14=l15=l16=l17=l18=l19=l20=l21=l22=l23=l24=l25=l26=l27=l28=l29=l30=l31=l32=l33=l34=l35=l36=l37=l38=l39=l40=l41=l42=\
+    l43=l44=l45=l46=l47=l48=l49=l50=l51=l52=l53=l54=l55=l56=l57=l58=l59=l60=l61=l62=l63=l64=l65=l66=l67=l68=l69=l70=l71=l72=l73=l74=l75=l76=l77=l78=l79=l80=l81=0
 
     #Se usa para colocar la operacion que le corresponde a cada celda
-    dic={(1,1):(350,60),(1,2):(398,60),(1,3):(446,60),(1,4):(494,60),(1,5):(542,60),(1,6):(590,60),(2,1):(350,130),(2,2):(398,130),(2,3):(446,130),\
-    (2,4):(494,130),(2,5):(542,130),(2,6):(590,130),(3,1):(350,200),(3,2):(398,200),(3,3):(446,200),(3,4):(494,200),(3,5):(542,200),(3,6):(590,200),\
-    (4,1):(350,270),(4,2):(398,270),(4,3):(446,270),(4,4):(494,270),(4,5):(542,270),(4,6):(590,270),(5,1):(350,340),(5,2):(398,340),(5,3):(446,340),\
-    (5,4):(494,340),(5,5):(542,340),(5,6):(590,340),(6,1):(350,410),(6,2):(398,410),(6,3):(446,410),(6,4):(494,410),(6,5):(542,410),(6,6):(590,410)}
+    dic={(1,1):(353,63),(1,2):(401,63),(1,3):(449,63),(1,4):(497,63),(1,5):(545,63),(1,6):(593,63),(1,7):(641,63),(1,8):(689,63),(1,9):(737,63),\
+    (2,1):(353,133),(2,2):(401,133),(2,3):(449,133),(2,4):(497,133),(2,5):(545,133),(2,6):(593,133),(2,7):(641,133),(2,8):(689,133),(2,9):(737,133),\
+    (3,1):(353,203),(3,2):(401,203),(3,3):(449,203),(3,4):(497,203),(3,5):(545,203),(3,6):(593,203),(3,7):(641,203),(3,8):(689,203),(3,9):(737,203),\
+    (4,1):(353,273),(4,2):(401,273),(4,3):(449,273),(4,4):(497,273),(4,5):(545,273),(4,6):(593,273),(4,7):(641,273),(4,8):(689,273),(4,9):(737,273),\
+    (5,1):(353,343),(5,2):(401,343),(5,3):(449,343),(5,4):(497,343),(5,5):(545,343),(5,6):(593,343),(5,7):(641,343),(5,8):(689,343),(5,9):(737,343),\
+    (6,1):(353,413),(6,2):(401,413),(6,3):(449,413),(6,4):(497,413),(6,5):(545,413),(6,6):(593,413),(6,7):(641,413),(6,8):(689,413),(6,9):(737,413),\
+    (7,1):(353,483),(7,2):(401,483),(7,3):(449,483),(7,4):(497,483),(7,5):(545,483),(7,6):(593,483),(7,7):(641,483),(7,8):(689,483),(7,9):(737,483),\
+    (8,1):(353,553),(8,2):(401,553),(8,3):(449,553),(8,4):(497,553),(8,5):(545,553),(8,6):(593,553),(8,7):(641,553),(8,8):(689,553),(8,9):(737,553),\
+    (9,1):(353,623),(9,2):(401,623),(9,3):(449,623),(9,4):(497,623),(9,5):(545,623),(9,6):(593,623),(9,7):(641,623),(9,8):(689,623),(9,9):(737,623)}
 
     #Contiene una lista de colores para diferenciar las celdas
-    colores=["greenyellow","#83689a","yellow","orange","#0dd0e1","bisque","pink","indianred","lightgreen","slateblue1","khaki","thistle","#227ca2","#f77e78","#40e7b9",\
-    "green2","#c98686",'#518251','#f6c348','#f9ccbb','#e7aebf','#b980ff','#9b775d','#c91b20','#ffb2f2','#5fcc9c','#ee6c4d','#ffe19c','#fecc0c','#5ec4ec','#dabe96','#cdffe6']
+    colores=["greenyellow","red","yellow","orange","gray","bisque","pink","indianred","lightgreen","slateblue1","khaki","thistle","turquoise","brown1","blue2",\
+    "green2","purple"]
 
     #Se coloca una cuadricula con los tiempos, solo aparece cuando se usa timer o cronometro
     horas=Label(ventana,text=" HORAS ",bg="yellow",font=("Helvetica",12)).place(x=850,y=60)
@@ -79,7 +66,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
     seconds=Label(ventana,width=10,text=0,bg="white",font=("Helvetica",12))
     seconds.place(x=1010,y=85)
     
-    cortina=Label(ventana,width=28,heigh=3,bg="#4682b4",font=("Helvetica",12)) #Ayuda a ocultar la cuadricula
+    cortina=Label(ventana,width=28,heigh=3,bg="purple1",font=("Helvetica",12)) #Ayuda a ocultar la cuadricula
     cortina.place(x=850,y=60)
 
     def guardarJugador(): #Guarda el nombre del jugador
@@ -89,197 +76,41 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
         elif len(nombre.get())>30:
             return messagebox.showinfo("ERROR","EL NOMBRE DEBE SER DE MAXIMO 30 CARACTERES")
         else:
-            listo="Si" #Ponemos que ya exxisste un nombre
+            listo="Si" #Ponemos que ya existe un nombre
+            #Label(ventana,bg="purple1",width=57,height=5).place(x=200,y=600)
             entryName.config(state = DISABLED) #Se deshablita el entry
-            name.destroy() #Destruimos el boton
-            
+            name.destroy() #Destruimos el boton            
 
     def crearCeldas(posicion,color): #Recibe un par ordenado para saber cual label se tiene que configurar con un color
-        if posicion==(1,1):
-            uno.config(bg=color)
-        elif posicion==(1,2):
-            dos.config(bg=color)
-        elif posicion==(1,3):
-            tres.config(bg=color)
-        elif posicion==(1,4):
-            cuatro.config(bg=color)
-        elif posicion==(1,5):
-            cinco.config(bg=color)
-        elif posicion==(1,6):
-            seis.config(bg=color)
-        elif posicion==(2,1):
-            siete.config(bg=color)
-        elif posicion==(2,2):
-            ocho.config(bg=color)
-        elif posicion==(2,3):
-            nueve.config(bg=color)
-        elif posicion==(2,4):
-            diez.config(bg=color)
-        elif posicion==(2,5):
-            once.config(bg=color)
-        elif posicion==(2,6):
-            doce.config(bg=color)
-        elif posicion==(3,1):
-            trece.config(bg=color)
-        elif posicion==(3,2):
-            catorce.config(bg=color)
-        elif posicion==(3,3):
-            quince.config(bg=color)
-        elif posicion==(3,4):
-            dieciseis.config(bg=color)
-        elif posicion==(3,5):
-            diecisiete.config(bg=color)
-        elif posicion==(3,6):
-            dieciocho.config(bg=color)
-        elif posicion==(4,1):
-            diecinueve.config(bg=color)
-        elif posicion==(4,2):
-            veinte.config(bg=color)
-        elif posicion==(4,3):
-            veintiuno.config(bg=color)
-        elif posicion==(4,4):
-            veintidos.config(bg=color)
-        elif posicion==(4,5):
-            veintitres.config(bg=color)
-        elif posicion==(4,6):
-            veinticuatro.config(bg=color)
-        elif posicion==(5,1):
-            veinticinco.config(bg=color)
-        elif posicion==(5,2):
-            veintiseis.config(bg=color)
-        elif posicion==(5,3):
-            veintisiete.config(bg=color)
-        elif posicion==(5,4):
-            veintiocho.config(bg=color)
-        elif posicion==(5,5):
-            veintinueve.config(bg=color)
-        elif posicion==(5,6):
-            treinta.config(bg=color)
-        elif posicion==(6,1):
-            treintauno.config(bg=color)
-        elif posicion==(6,2):
-            treintados.config(bg=color)
-        elif posicion==(6,3):
-            treintatres.config(bg=color)
-        elif posicion==(6,4):
-            treintacuatro.config(bg=color)
-        elif posicion==(6,5):
-            treintacinco.config(bg=color)
-        else:
-            treintaseis.config(bg=color)
-            
-    def guardarTop10():
-        global dific
-        configuracion=open("kenken_configuración.dat").readlines()
-        if configuracion[1]=="relojSi\n":
-            try:
-                archivo10 = eval(str(cargarArchivo('kenken_top10.dat')))
-                plantilla = obtenerPlantillaTop10()
-                plantilla[0] = dific
-                plantilla[1] = nombre.get()
-                plantilla[2] = hours['text']
-                plantilla[3] = minuts['text']
-                plantilla[4] = seconds['text']
-                tempo = []
-                tempo+=[plantilla]
-                archivo10+= tempo
-                print('tempo',tempo,'archivo',archivo10)
-                guardar('kenken_top10.dat',str(archivo10))
-                print(cargarArchivo('kenken_top10.dat'))
-            except:
-                top10 = open('kenken_top10.dat','w')
-                guardar('kenken_top10.dat','[]')
-                return guardarTop10()               
+         #Diccionario con los labels
+        etiquetas={(1,1):l1,(1,2):l2,(1,3):l3,(1,4):l10,(1,5):l17,(1,6):l26,(1,7):l37,(1,8):l50,(1,9):l65,\
+        (2,1):l4,(2,2):l5,(2,3):l6,(2,4):l11,(2,5):l18,(2,6):l27,(2,7):l38,(2,8):l51,(2,9):l66,\
+        (3,1):l7,(3,2):l8,(3,3):l9,(3,4):l12,(3,5):l19,(3,6):l28,(3,7):l39,(3,8):l52,(3,9):l67,\
+        (4,1):l13,(4,2):l14,(4,3):l15,(4,4):l16,(4,5):l20,(4,6):l29,(4,7):l40,(4,8):l53,(4,9):l68,\
+        (5,1):l21,(5,2):l22,(5,3):l23,(5,4):l24,(5,5):l25,(5,6):l30,(5,7):l41,(5,8):l54,(5,9):l69,\
+        (6,1):l31,(6,2):l32,(6,3):l33,(6,4):l34,(6,5):l35,(6,6):l36,(6,7):l42,(6,8):l55,(6,9):l70,\
+        (7,1):l43,(7,2):l44,(7,3):l45,(7,4):l46,(7,5):l47,(7,6):l48,(7,7):l49,(7,8):l56,(7,9):l71,\
+        (8,1):l57,(8,2):l58,(8,3):l59,(8,4):l60,(8,5):l61,(8,6):l62,(8,7):l63,(8,8):l64,(8,9):l72,\
+        (9,1):l73,(9,2):l74,(9,3):l75,(9,4):l76,(9,5):l77,(9,6):l78,(9,7):l79,(9,8):l80,(9,9):l81}
 
-                
+        etiquetas[posicion].config(bg=color) #Se configura un label gracias al diccionario
+        
     def partidasGuardadas(): #Pone en un diccionario las partidas de acuerdo a su dificultad
         partidas=open('kenken_juegos.dat')
-        dic={"F":[],"I":[],"D":[]}
+        nivel=open("kenken_configuración.dat").readlines()[3][0] #Contiene el tipo de cuadricula de la configuracion
+        dic={"F":[],"I":[],"D":[]} #Guarda las partidas que correspondan a la cuadricula configurada en diccionarios segun su dificultad
         while True:
             juego=partidas.readline()
             if juego=="":
                 break
-            elif juego[0]=="F":
+            elif juego[0]=="F" and juego[1]==nivel:
                 dic["F"]+=[eval(juego[2:-1])]
-            elif juego[0]=="I":
+            elif juego[0]=="I" and juego[1]==nivel:
                 dic["I"]+=[eval(juego[2:-1])]
-            else:
+            elif juego[0]=="D" and juego[1]==nivel:
                 dic["D"]+=[eval(juego[2:-1])]
         return dic
 
-    def pasarSegundos(lista): #cambia las horas, los minutos y segundos a segundos
-        lista = lista[2:]
-        resultado = 0
-        resultado += lista[0]*3600 + lista[1]*60 + lista[2]
-        return resultado
-
-    def invertirLlaves(diccionario): #Hace un diccionario invirtiendo las llaves y valores
-        inverso={}
-        for llave in diccionario:
-            inverso[diccionario[llave]]=llave
-        return inverso
-    def leerArchivo10(): #retorna los nombres de los primeros 10
-        global dific
-        configuracion=open("kenken_configuración.dat").readlines() #Lista con la configuracion del juego
-        dific=configuracion[0][0] #Contiene el nivel de dificultad
-        top10 = cargarArchivo('kenken_top10.dat') #abre el archivo
-        temporal = {}
-        for i in range(len(top10)):
-            for j in range(len(top10)):
-                if top10[i][0] == dific:
-                    temporal[top10[i][1]] = pasarSegundos(top10[i]) 
-        valores = list(temporal.values()) #segundos
-        valores.sort() #ordena los segundos
-        resultado = [] 
-        dic = invertirLlaves(temporal) #segundos se vuelven las llaves y los nombres los valores
-        for i in valores:
-            resultado += [[dic[i],i]] #nombres,valores
-        resultado = resultado[:10]
-        nombres = []
-        for i in range(len(resultado)):
-           nombres += [resultado[i][0]]
-        return nombres
-
-    def mejoresValoresTop10(): #retorna los mejores 10 números
-        lista = leerArchivo10()
-        top10 = eval(str(cargarArchivo('kenken_top10.dat')))
-        mejores10 = []
-        for i in range(len(top10)):
-            if top10[i][1] in lista:
-                mejores10 += [top10[i][2:]]
-        mejores10.sort()
-        return mejores10
-
-    def top10():
-        root = Tk()
-        root.geometry('500x300')
-        root.title('TOP 10')
-
- #Contiene el nivel de dificultad
-        def listbox(): #crea los listboxs
-            col1 = leerArchivo10() #nombres
-            col2 = mejoresValoresTop10() #valores
-            print(col1,col2)
-            lb1 = Listbox(root) #crea un listbox para los nombres
-            lb1.place(x=100,y=100)
-            lb2 = Listbox(root)  #crea un listbox para los valores
-            lb2.place(x=250,y=100)
-            contador = 0 #se necesita un contador para el listbox
-            for i in col1:
-                    lb1.insert(contador,i)
-                    contador+=1
-            contador = 0
-            for j in col2:
-                    lb2.insert(contador,j)
-                    contador+=1
-
-        listbox()
-        jugadores = Label(root,text="JUGADORES",bd = 1, relief = 'solid', heigh = 2, width = 12,bg="yellow",font=("Helvetica",12,'bold')).place(x=100,y=50)
-        tiempo = Label(root,text= 'TIEMPO', bd = 1, relief = 'solid',bg = 'yellow', heigh = 2, width = 12,font = ('Helvetica',12,'bold')).place(x=250,y=50)
-
-        root.mainloop()
-        
-        
     def crear_juego_aux(juego): #Recibe un juego al azar dependiendo de la dificultad, esta funcion lee como debe verse el juego graficamente
         color=0 #Ayuda a dar color a los labels, permite usar un color de la lista de colores
         for indice in juego: #Ingresamos al diccionario del juego
@@ -288,24 +119,23 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             while contador<len(juego[indice]):
                 for posicion in dic: #Usamos el diccionario que posee las ubicaciones de cada par ordenado
                     if contador==1 and posicion==juego[indice][contador]: #El primer par ordenado es que el tendra la operacion
-                        Label(ventana,text=operacion,width=3,bg=colores[color],font=("Arial",10)).place(x=dic[posicion][0]+3,y=dic[posicion][1]+3) #Colocamos la operacon
+                        Label(ventana,text=operacion,width=3,bg=colores[color],font=("Arial",10)).place(x=dic[posicion][0],y=dic[posicion][1]) #Colocamos la operacon
                         crearCeldas(posicion,colores[color]) #Configuramos la casilla con color
                         break
                     elif posicion==juego[indice][contador]:
-                        Label(ventana,width=3,bg=colores[color],font=("Arial",10)).place(x=dic[posicion][0]+3,y=dic[posicion][1]+3)
+                        Label(ventana,width=3,bg=colores[color],font=("Arial",10)).place(x=dic[posicion][0],y=dic[posicion][1])
                         crearCeldas(posicion,colores[color]) #Configuramos la casilla con color                      
                         break
                 contador+=1 #Aumentamos el contador para configurar la celda
             color+=1 #Se aumenta el contador de color
 
     def crear_juego(created,opcion): #Recibe un parametro que le permite saber si ya hay un juego iniciado y si ya existe un cronometro (caso especial)
-        global listo,juego,repetidos,dific
+        global listo,juego,repetidos
         if listo=="Si": #Verificamos que el usuario haya puesto el nombre
             if created=="No": #Verificamos que no exista un juego creado (caso para iniciar juego)
                 global creado,count
                 configuracion=open("kenken_configuración.dat").readlines() #Lista con la configuracion del juego
                 dificultad=configuracion[0][0] #Contiene el nivel de dificultad
-                dific = dificultad
                 tiempo=configuracion[1] #Vemos si el juego es con reloj, timer o ninguno
                 lista=partidasGuardadas() #Obtiene un diccionario con los niveles(llaves) y una lista con los diccionarios respectivos(valores)
                 partidas=0 #Almacena las partidas de acuerdo a la dificultades
@@ -332,9 +162,9 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 elif tiempo=="timer\n": #Vemos si la configuracion es un timer
                     cortina.destroy() #Se destruye el label
                     #Se ponen los valores adecuados a cada tiempo
-                    hours['text']=int(configuracion[3][:1])
-                    minuts['text']=int(configuracion[3][1:3])
-                    seconds['text']=int(configuracion[3][3:5])
+                    hours['text']=int(configuracion[4][:1])
+                    minuts['text']=int(configuracion[4][1:3])
+                    seconds['text']=int(configuracion[4][3:5])
                     count=seconds['text']
                     if opcion=="Si":
                         timer()
@@ -357,6 +187,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 if opcion=="No":
                     opcion=messagebox.askquestion("OTRO JUEGO", "¿ESTA SEGURO DE TERMINAR ESTE JUEGO Y EMPEZAR CON OTRO?", icon='warning')
                 if opcion=="yes": #En caso de que desee otro juego, ademas se reinicia el timer o cronometro si estan configurados
+                    tipo="Timer"
                     reiniciar("yes")
                     crear_juego("No","No")
                 else: #En caso de que no sea asi, continuamos con el cronometro o timer si es que hay
@@ -388,8 +219,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                     timer()
                 elif configuracion[1]=="relojSi\n" or tipo=="Cronometro":
                     cronometro()
-        
-        
+
     def validarCeldas(): #Verifica que el juego este correcto
         global listo,creado
         if listo=="Si":
@@ -404,15 +234,14 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                     return messagebox.showinfo("ERROR","EXISTEN CASILLAS QUE NO DAN LA OPERACION CORRESPONDIENTE")
                 else:
                     configuracion=open("kenken_configuración.dat").readlines()
-                    guardarTop10()
                     if configuracion[1]=="timer\n":
                         detenerTimer()
                     elif configuracion[1]=="relojSi\n":
                         detenerCronometro()
                     if configuracion[2]=="sonidoSi\n":
                         PlaySound('congratulations.wav', SND_FILENAME)
-                    messagebox.showinfo("FELICIDADES","FELICIDADES, HAS GANADO")
-                    opcion=messagebox.askquestion("CONTINUAR", "¿DESEA SEGUIR JUGANDO?", icon='warning')
+                    messagebox.showinfo("ERROR","FELICIDADES, HAS GANADO")
+                    opcion=messagebox.askquestion("CONTINUAR", "¿DESEA CONTINUAR JUGANDO?", icon='warning')
                     if opcion=="yes":
                         otroJuego("yes")
                     else:
@@ -459,125 +288,83 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 return False
         return True
 
-    def retornarLabel(tupla): #Ayuda a retornar el valor de cada label
-        if tupla==(1,1):
-            return [uno['text'],uno]
-        elif tupla==(1,2):
-            return [dos['text'],dos]
-        elif tupla==(1,3):
-            return  [tres['text'],tres]
-        elif tupla==(1,4):
-            return [cuatro['text'],cuatro]
-        elif tupla==(1,5):
-            return [cinco['text'],cinco]
-        elif tupla==(1,6):
-            return [seis['text'],cinco]
-        elif tupla==(2,1):
-            return [siete['text'],siete]
-        elif tupla==(2,2):
-            return [ocho['text'],ocho]
-        elif tupla==(2,3):
-            return [nueve['text'],nueve]
-        elif tupla==(2,4):
-            return [diez['text'],diez]
-        elif tupla==(2,5):
-            return [once['text'],once]
-        elif tupla==(2,6):
-            return [doce['text'],doce]
-        elif tupla==(3,1):
-            return [trece['text'],trece]
-        elif tupla==(3,2):
-            return [catorce['text'],catorce]
-        elif tupla==(3,3):
-            return [quince['text'],quince]
-        elif tupla==(3,4):
-            return [dieciseis['text'],dieciseis]
-        elif tupla==(3,5):
-            return [diecisiete['text'],diecisiete]
-        elif tupla==(3,6):
-            return [dieciocho['text'],dieciocho]
-        elif tupla==(4,1):
-            return [diecinueve['text'],diecinueve]
-        elif tupla==(4,2):
-            return [veinte['text'],veinte]
-        elif tupla==(4,3):
-            return [veintiuno['text'],veintiuno]
-        elif tupla==(4,4):
-            return [veintidos['text'],veintidos]
-        elif tupla==(4,5):
-            return [veintitres['text'],veintitres]
-        elif tupla==(4,6):
-            return [veinticuatro['text'],veinticuatro]
-        elif tupla==(5,1):
-            return [veinticinco['text'],veinticinco]
-        elif tupla==(5,2):
-            return  [veintiseis['text'],veintiseis]
-        elif tupla==(5,3):
-            return [veintisiete['text'],veintisiete]
-        elif tupla==(5,4):
-            return [veintiocho['text'],veintiocho]
-        elif tupla==(5,5):
-            return [veintinueve['text'],veintinueve]
-        elif tupla==(5,6):
-            return [treinta['text'],treinta]
-        elif tupla==(6,1):
-            return [treintauno['text'],treintauno]
-        elif tupla==(6,2):
-            return [treintados['text'],treintados]
-        elif tupla==(6,3):
-            return [treintatres['text'],treintatres]
-        elif tupla==(6,4):
-            return [treintacuatro['text'],treintacuatro]
-        elif tupla==(6,5):
-            return [treintacinco['text'],treintacinco]
-        elif tupla==(6,6):
-            return [treintaseis['text'],treintaseis]
+    def retornarLabel(tupla): #Ayuda a retornar el valor de cada label, ademas contiene el label para identificarlo en caso de que haya un error en la operacion
+
+        #Diccionario con los labels
+        etiquetas={(1,1):l1,(1,2):l2,(1,3):l3,(1,4):l10,(1,5):l17,(1,6):l26,(1,7):l37,(1,8):l50,(1,9):l65,\
+        (2,1):l4,(2,2):l5,(2,3):l6,(2,4):l11,(2,5):l18,(2,6):l27,(2,7):l38,(2,8):l51,(2,9):l66,\
+        (3,1):l7,(3,2):l8,(3,3):l9,(3,4):l12,(3,5):l19,(3,6):l28,(3,7):l39,(3,8):l52,(3,9):l67,\
+        (4,1):l13,(4,2):l14,(4,3):l15,(4,4):l16,(4,5):l20,(4,6):l29,(4,7):l40,(4,8):l53,(4,9):l68,\
+        (5,1):l21,(5,2):l22,(5,3):l23,(5,4):l24,(5,5):l25,(5,6):l30,(5,7):l41,(5,8):l54,(5,9):l69,\
+        (6,1):l31,(6,2):l32,(6,3):l33,(6,4):l34,(6,5):l35,(6,6):l36,(6,7):l42,(6,8):l55,(6,9):l70,\
+        (7,1):l43,(7,2):l44,(7,3):l45,(7,4):l46,(7,5):l47,(7,6):l48,(7,7):l49,(7,8):l56,(7,9):l71,\
+        (8,1):l57,(8,2):l58,(8,3):l59,(8,4):l60,(8,5):l61,(8,6):l62,(8,7):l63,(8,8):l64,(8,9):l72,\
+        (9,1):l73,(9,2):l74,(9,3):l75,(9,4):l76,(9,5):l77,(9,6):l78,(9,7):l79,(9,8):l80,(9,9):l81}
+
+        return [etiquetas[tupla]['text'],etiquetas[tupla]]
 
     def verVacios(): #Veriicamos que el label no este vacio
-        valores=[uno['text'],dos['text'],tres['text'],cuatro['text'],cinco['text'],seis['text'],siete['text'],ocho['text'],nueve['text'],diez['text'],once['text'],\
-        doce['text'],trece['text'],catorce['text'],quince['text'],dieciseis['text'],diecisiete['text'],dieciocho['text'],diecinueve['text'],veinte['text'],\
-        veintiuno['text'],veintidos['text'],veintitres['text'],veinticuatro['text'],veinticinco['text'],veintiseis['text'],veintisiete['text'],veintiocho['text'],\
-        veintinueve['text'],treinta['text'],treintauno['text'],treintados['text'],treintatres['text'],treintacuatro['text'],treintacinco['text'],treintaseis['text']]
-        for valor in valores:
-            if valor=="":
-                return True
+        labels=[l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,\
+        l40,l41,l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,\
+        l79,l80,l81]
+        try:
+            for label in labels:
+                if label['text']=="":
+                    return True
+        except:
+            pass
         return False
 
     def verFilas(): #Verificamos que no existan los mismos numeros en una fila
-        filas=[[uno['text'],dos['text'],tres['text'],cuatro['text'],cinco['text'],seis['text']],[siete['text'],ocho['text'],nueve['text'],diez['text'],once['text'],\
-        doce['text']],[trece['text'],catorce['text'],quince['text'],dieciseis['text'],diecisiete['text'],dieciocho['text']],[diecinueve['text'],veinte['text'],\
-        veintiuno['text'],veintidos['text'],veintitres['text'],veinticuatro['text']],[veinticinco['text'],veintiseis['text'],veintisiete['text'],veintiocho['text'],\
-        veintinueve['text'],treinta['text']],[treintauno['text'],treintados['text'],treintatres['text'],treintacuatro['text'],treintacinco['text'],treintaseis['text']]]
+        filas=[[l1,l2,l3,l10,l17,l26,l37,l50,l65],[l4,l5,l6,l11,l18,l27,l38,l51,l66],[l7,l8,l9,l12,l19,l28,l39,l52,l67],[l13,l14,l15,l16,l20,l29,l40,l53,l68],\
+        [l21,l22,l23,l24,l25,l30,l41,l54,l69],[l31,l32,l33,l34,l35,l36,l42,l55,l70],[l43,l44,l45,l46,l47,l48,l49,l56,l71],[l57,l58,l59,l60,l61,l62,l63,l64,l72],\
+        [l73,l74,l75,l76,l77,l78,l79,l80,l81]]
+        nivel=int(open("kenken_configuración.dat").readlines()[3][0])
+
+        #Se aggaran los labels necesarios dependiendo de la cuadricula
+        filas=filas[:nivel]
+        copia_filas=[]
+        for fila in filas:
+            copia_filas+=[fila[:nivel]]
+            
+        filas=copia_filas
         for fila in filas:
             for numero in fila:
                 cantidad=0
                 for copia in fila:
-                    if numero==copia:
+                    if numero['text']==copia['text']:
                         cantidad+=1
                 if cantidad>1:
                     return True
         return False
 
     def verColumnas(): #Verificamos que no existan los mismos numeros en una columna
-        columnas=[[uno['text'],siete['text'],trece['text'],diecinueve['text'],veinticinco['text'],treintauno['text']],[dos['text'],ocho['text'],catorce['text'],\
-        veinte['text'],veintiseis['text'],treintados['text']],[tres['text'],nueve['text'],quince['text'],veintiuno['text'],veintisiete['text'],treintatres['text']],\
-        [cuatro['text'],diez['text'],dieciseis['text'],veintidos['text'],veintiocho['text'],treintacuatro['text']],[cinco['text'],once['text'],diecisiete['text'],\
-        veintitres['text'],veintinueve['text'],treintacinco['text']],[seis['text'],doce['text'],dieciocho['text'],veinticuatro['text'],treinta['text'],\
-        treintaseis['text']]]
+        columnas=[[l1,l4,l7,l13,l21,l31,l43,l57,l73],[l2,l5,l8,l14,l22,l32,l44,l58,l74],[l3,l6,l9,l15,l23,l33,l45,l59,l75],[l10,l11,l12,l16,l24,l34,l46,l60,l76],\
+        [l17,l18,l19,l20,l25,l35,l47,l61,l77],[l26,l27,l28,l29,l30,l36,l48,l62,l78],[l37,l38,l39,l40,l41,l42,l49,l63,l79],[l50,l51,l52,l53,l54,l55,l56,l64,l80],\
+        [l65,l66,l67,l68,l69,l70,l71,l72,l81]]
+        nivel=int(open("kenken_configuración.dat").readlines()[3][0])
+
+        #Se aggaran los labels necesarios dependiendo de la cuadricula
+        columnas=columnas[:nivel]
+        copia_columnas=[]
+        for columna in columnas:
+            copia_columnas+=[columna[:nivel]]
+
+        columnas=copia_columnas
         for columna in columnas:
             for numero in columna:
                 cantidad=0
                 for copia in columna:
-                    if numero==copia:
+                    if numero['text']==copia['text']:
                         cantidad+=1
                 if cantidad>1:
                     return True
         return False
 
     def reiniciar(opcion): #Pone en blanco cada label, tambien reinicia el cronometro y timer si estan presentes
-        valores=[uno,dos,tres,cuatro,cinco,seis,siete,ocho,nueve,diez,once,doce,trece,catorce,quince,dieciseis,diecisiete,dieciocho,diecinueve,veinte,veintiuno,\
-        veintidos,veintitres,veinticuatro,veinticinco,veintiseis,veintisiete,veintiocho,veintinueve,treinta,treintauno,treintados,treintatres,treintacuatro,\
-        treintacinco,treintaseis]
+        labels=[l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,\
+        l40,l41,l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,\
+        l79,l80,l81]
         global creado,listo,tipo
         if listo=="Si":
             if creado=="Si":
@@ -591,9 +378,12 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                     opcion=messagebox.askquestion("REINICIAR", "¿ESTA SEGURO DE EMPEZAR NUEVAMENTE ESTE MISMO JUEGO?", icon='warning')
                 if opcion=="yes":
                     global count
-                    
-                    for label in valores:
-                        label['text']=""
+
+                    try:
+                        for label in labels:
+                            label['text']=""
+                    except:
+                        pass
 
                     if configuracion[1]=="relojSi\n":
                         hours['text']=0
@@ -602,9 +392,10 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                         count=0
                         cronometro()
                     elif configuracion[1]=="timer\n":
-                        hours['text']=int(configuracion[3][:1])
-                        minuts['text']=int(configuracion[3][1:3])
-                        seconds['text']=int(configuracion[3][3:5])
+                        tipo="Timer"
+                        hours['text']=int(configuracion[4][:1])
+                        minuts['text']=int(configuracion[4][1:3])
+                        seconds['text']=int(configuracion[4][3:5])
                         count=seconds['text']
                         timer()
                 else:
@@ -665,9 +456,9 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             opcion=messagebox.askquestion("TIEMPO EXPIRADO","¿DESEA CONTINUAR EL MISMO JUEGO?")
             if opcion=="yes":
                 configuracion=open("kenken_configuración.dat").readlines()
-                hours['text']=int(configuracion[3][:1])
-                minuts['text']=int(configuracion[3][1:3])
-                seconds['text']=int(configuracion[3][3:5])
+                hours['text']=int(configuracion[4][:1])
+                minuts['text']=int(configuracion[4][1:3])
+                seconds['text']=int(configuracion[4][3:5])
                 count=seconds['text']
                 tipo="Cronometro"
                 cronometro()
@@ -696,342 +487,416 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
         global posc
         posc = tupla
 
-    #36 labels del juego
-    uno=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    uno.place(x=350,y=60)
-    uno.bind('<Button-1>',  lambda event: pos(event,(1,1)))
-    
-    dos=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    dos.place(x=398,y=60)
-    dos.bind('<Button-1>',  lambda event:pos(event,(1,2)))
-    
-    tres=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    tres.place(x=446,y=60)
-    tres.bind('<Button-1>',  lambda  event:pos(event,(1,3)))
-    
-    cuatro=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    cuatro.place(x=494,y=60)
-    cuatro.bind('<Button-1>',  lambda event:pos(event,(1,4)))
-    
-    cinco=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    cinco.place(x=542,y=60)
-    cinco.bind('<Button-1>',  lambda  event:pos(event,(1,5)))
-    
-    seis=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    seis.place(x=590,y=60)
-    seis.bind('<Button-1>',  lambda  event:pos(event,(1,6)))
-    
-    siete=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    siete.place(x=350,y=130)
-    siete.bind('<Button-1>',  lambda  event:pos(event,(2,1)))
-    
-    ocho=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    ocho.place(x=398,y=130)
-    ocho.bind('<Button-1>',  lambda  event:pos(event,(2,2)))
-    
-    nueve=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    nueve.place(x=446,y=130)
-    nueve.bind('<Button-1>',  lambda  event:pos(event,(2,3)))
-    
-    diez=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    diez.place(x=494,y=130)
-    diez.bind('<Button-1>',  lambda  event:pos(event,(2,4)))
-    
-    once=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    once.place(x=542,y=130)
-    once.bind('<Button-1>',  lambda  event:pos(event,(2,5)))
-    
-    doce=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    doce.place(x=590,y=130)
-    doce.bind('<Button-1>',  lambda  event:pos(event,(2,6)))
-    
-    trece=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    trece.place(x=350,y=200)
-    trece.bind('<Button-1>',  lambda  event:pos(event,(3,1)))
-    
-    catorce=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    catorce.place(x=398,y=200)
-    catorce.bind('<Button-1>',  lambda  event:pos(event,(3,2)))
-    
-    quince=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    quince.place(x=446,y=200)
-    quince.bind('<Button-1>',  lambda  event:pos(event,(3,3)))
-    
-    dieciseis=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    dieciseis.place(x=494,y=200)
-    dieciseis.bind('<Button-1>',  lambda  event:pos(event,(3,4)))
-    
-    diecisiete=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    diecisiete.place(x=542,y=200)
-    diecisiete.bind('<Button-1>',  lambda  event:pos(event,(3,5)))
-    
-    dieciocho=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    dieciocho.place(x=590,y=200)
-    dieciocho.bind('<Button-1>',  lambda  event:pos(event,(3,6)))
-    
-    diecinueve=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    diecinueve.place(x=350,y=270)
-    diecinueve.bind('<Button-1>',  lambda event:pos(event,(4,1)))
-    
-    veinte=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veinte.place(x=398,y=270)
-    veinte.bind('<Button-1>',  lambda event:pos(event,(4,2)))
-    
-    veintiuno=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintiuno.place(x=446,y=270)
-    veintiuno.bind('<Button-1>',  lambda event:pos(event,(4,3)))
-    
-    veintidos=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintidos.place(x=494,y=270)
-    veintidos.bind('<Button-1>',  lambda event:pos(event,(4,4)))
-    
-    veintitres=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintitres.place(x=542,y=270)
-    veintitres.bind('<Button-1>',  lambda event:pos(event,(4,5)))
-    
-    veinticuatro=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veinticuatro.place(x=590,y=270)
-    veinticuatro.bind('<Button-1>',  lambda event:pos(event,(4,6)))
-    
-    veinticinco=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veinticinco.place(x=350,y=340)
-    veinticinco.bind('<Button-1>', lambda event:pos(event,(5,1)))
-    
-    veintiseis=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintiseis.place(x=398,y=340)
-    veintiseis.bind('<Button-1>',  lambda event:pos(event,(5,2)))
-    
-    veintisiete=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintisiete.place(x=446,y=340)
-    veintisiete.bind('<Button-1>', lambda event:pos(event,(5,3)))
-    
-    veintiocho=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintiocho.place(x=494,y=340)
-    veintiocho.bind('<Button-1>',  lambda event:pos(event,(5,4)))
-    
-    veintinueve=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    veintinueve.place(x=542,y=340)
-    veintinueve.bind('<Button-1>', lambda event:pos(event,(5,5)))
-    
-    treinta=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treinta.place(x=590,y=340)
-    treinta.bind('<Button-1>', lambda event:pos(event,(5,6)))
-    
-    treintauno=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treintauno.place(x=350,y=410)
-    treintauno.bind('<Button-1>', lambda event:pos(event,(6,1)))
-    
-    treintados=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treintados.place(x=398,y=410)
-    treintados.bind('<Button-1>',  lambda event:pos(event,(6,2)))
-    
-    treintatres=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treintatres.place(x=446,y=410)
-    treintatres.bind('<Button-1>', lambda event:pos(event,(6,3)))
-    
-    treintacuatro=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treintacuatro.place(x=494,y=410)
-    treintacuatro.bind('<Button-1>',  lambda event:pos(event,(6,4)))
-    
-    treintacinco=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treintacinco.place(x=542,y=410)
-    treintacinco.bind('<Button-1>',  lambda event:pos(event,(6,5)))
-    
-    treintaseis=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
-    treintaseis.place(x=590,y=410)
-    treintaseis.bind('<Button-1>', lambda event:pos(event,(6,6)))
+    def labels():
+        global l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,l40,l41,\
+        l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,l79,l80,l81
+
+        archivo=open("kenken_configuración.dat").readlines()
+        size=int(archivo[3][0])
+        if size>=3:
+            l1=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l1.place(x=350,y=60)
+            l1.bind('<Button-1>', lambda event:pos(event,(1,1)))
+            
+            l2=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l2.place(x=398,y=60)
+            l2.bind('<Button-1>', lambda event:pos(event,(1,2)))
+            
+            l3=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l3.place(x=446,y=60)
+            l3.bind('<Button-1>', lambda event:pos(event,(1,3)))
+            
+            l4=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l4.place(x=350,y=130)
+            l4.bind('<Button-1>', lambda event:pos(event,(2,1)))
+
+            l5=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l5.place(x=398,y=130)
+            l5.bind('<Button-1>', lambda event:pos(event,(2,2)))
+
+            l6=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l6.place(x=446,y=130)
+            l6.bind('<Button-1>', lambda event:pos(event,(2,3)))
+
+            l7=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l7.place(x=350,y=200)
+            l7.bind('<Button-1>', lambda event:pos(event,(3,1)))
+
+            l8=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l8.place(x=398,y=200)
+            l8.bind('<Button-1>', lambda event:pos(event,(3,2)))
+
+            l9=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l9.place(x=446,y=200)
+            l9.bind('<Button-1>', lambda event:pos(event,(3,3)))
+
+            Button(ventana,text=1,command=lambda:boton(1),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=75)
+            Button(ventana,text=2,command=lambda:boton(2),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=145)
+            Button(ventana,text=3,command=lambda:boton(3),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=215)
+        if size>=4:
+            l10=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l10.place(x=494,y=60)
+            l10.bind('<Button-1>', lambda event:pos(event,(1,4)))
+
+            l11=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l11.place(x=494,y=130)
+            l11.bind('<Button-1>', lambda event:pos(event,(2,4)))
+
+            l12=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l12.place(x=494,y=200)
+            l12.bind('<Button-1>', lambda event:pos(event,(3,4)))
+
+            l13=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l13.place(x=350,y=270)
+            l13.bind('<Button-1>', lambda event:pos(event,(4,1)))
+
+            l14=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l14.place(x=398,y=270)
+            l14.bind('<Button-1>', lambda event:pos(event,(4,2)))
+
+            l15=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l15.place(x=446,y=270)
+            l15.bind('<Button-1>', lambda event:pos(event,(4,3)))
+
+            l16=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l16.place(x=494,y=270)
+            l16.bind('<Button-1>', lambda event:pos(event,(4,4)))
+
+            Button(ventana,text=4,command=lambda:boton(4),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=285)
+        if size>=5:
+            l17=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l17.place(x=542,y=60)
+            l17.bind('<Button-1>', lambda event:pos(event,(1,5)))
+
+            l18=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l18.place(x=542,y=130)
+            l18.bind('<Button-1>', lambda event:pos(event,(2,5)))
+
+            l19=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l19.place(x=542,y=200)
+            l19.bind('<Button-1>', lambda event:pos(event,(3,5)))
+
+            l20=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l20.place(x=542,y=270)
+            l20.bind('<Button-1>', lambda event:pos(event,(4,5)))
+
+            l21=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l21.place(x=350,y=340)
+            l21.bind('<Button-1>', lambda event:pos(event,(5,1)))
+
+            l22=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l22.place(x=398,y=340)
+            l22.bind('<Button-1>', lambda event:pos(event,(5,2)))
+
+            l23=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l23.place(x=446,y=340)
+            l23.bind('<Button-1>', lambda event:pos(event,(5,3)))
+
+            l24=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l24.place(x=494,y=340)
+            l24.bind('<Button-1>', lambda event:pos(event,(5,4)))
+
+            l25=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l25.place(x=542,y=340)
+            l25.bind('<Button-1>', lambda event:pos(event,(5,5)))
+
+            Button(ventana,text=5,command=lambda:boton(5),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=355)
+        if size>=6:
+            l26=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l26.place(x=590,y=60)
+            l26.bind('<Button-1>', lambda event:pos(event,(1,6)))
+
+            l27=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l27.place(x=590,y=130)
+            l27.bind('<Button-1>', lambda event:pos(event,(2,6)))
+
+            l28=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l28.place(x=590,y=200)
+            l28.bind('<Button-1>', lambda event:pos(event,(3,6)))
+
+            l29=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l29.place(x=590,y=270)
+            l29.bind('<Button-1>', lambda event:pos(event,(4,6)))
+
+            l30=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l30.place(x=590,y=340)
+            l30.bind('<Button-1>', lambda event:pos(event,(5,6)))
+
+            l31=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l31.place(x=350,y=410)
+            l31.bind('<Button-1>', lambda event:pos(event,(6,1)))
+
+            l32=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l32.place(x=398,y=410)
+            l32.bind('<Button-1>', lambda event:pos(event,(6,2)))
+
+            l33=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l33.place(x=446,y=410)
+            l33.bind('<Button-1>', lambda event:pos(event,(6,3)))
+
+            l34=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l34.place(x=494,y=410)
+            l34.bind('<Button-1>', lambda event:pos(event,(6,4)))
+
+            l35=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l35.place(x=542,y=410)
+            l35.bind('<Button-1>', lambda event:pos(event,(6,5)))
+
+            l36=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l36.place(x=590,y=410)
+            l36.bind('<Button-1>', lambda event:pos(event,(6,6)))
+
+            Button(ventana,text=6,command=lambda:boton(6),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=425)
+        if size>=7:
+            l37=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l37.place(x=638,y=60)
+            l37.bind('<Button-1>', lambda event:pos(event,(1,7)))
+
+            l38=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l38.place(x=638,y=130)
+            l38.bind('<Button-1>', lambda event:pos(event,(2,7)))
+
+            l39=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l39.place(x=638,y=200)
+            l39.bind('<Button-1>', lambda event:pos(event,(3,7)))
+
+            l40=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l40.place(x=638,y=270)
+            l40.bind('<Button-1>', lambda event:pos(event,(4,7)))
+
+            l41=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l41.place(x=638,y=340)
+            l41.bind('<Button-1>', lambda event:pos(event,(5,7)))
+
+            l42=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l42.place(x=638,y=410)
+            l42.bind('<Button-1>', lambda event:pos(event,(6,7)))
+
+            l43=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l43.place(x=350,y=480)
+            l43.bind('<Button-1>', lambda event:pos(event,(7,1)))
+
+            l44=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l44.place(x=398,y=480)
+            l44.bind('<Button-1>', lambda event:pos(event,(7,2)))
+
+            l45=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l45.place(x=446,y=480)
+            l45.bind('<Button-1>', lambda event:pos(event,(7,3)))
+
+            l46=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l46.place(x=494,y=480)
+            l46.bind('<Button-1>', lambda event:pos(event,(7,4)))
+
+            l47=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l47.place(x=542,y=480)
+            l47.bind('<Button-1>', lambda event:pos(event,(7,5)))
+
+            l48=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l48.place(x=590,y=480)
+            l48.bind('<Button-1>', lambda event:pos(event,(7,6)))
+
+            l49=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l49.place(x=638,y=480)
+            l49.bind('<Button-1>', lambda event:pos(event,(7,7)))
+
+            Button(ventana,text=7,command=lambda:boton(7),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=495)
+        if size>=8:
+            l50=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l50.place(x=686,y=60)
+            l50.bind('<Button-1>', lambda event:pos(event,(1,8)))
+
+            l51=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l51.place(x=686,y=130)
+            l51.bind('<Button-1>', lambda event:pos(event,(2,8)))
+
+            l52=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l52.place(x=686,y=200)
+            l52.bind('<Button-1>', lambda event:pos(event,(3,8)))
+
+            l53=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l53.place(x=686,y=270)
+            l53.bind('<Button-1>', lambda event:pos(event,(4,8)))
+
+            l54=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l54.place(x=686,y=340)
+            l54.bind('<Button-1>', lambda event:pos(event,(5,8)))
+
+            l55=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l55.place(x=686,y=410)
+            l55.bind('<Button-1>', lambda event:pos(event,(6,8)))
+
+            l56=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l56.place(x=686,y=480)
+            l56.bind('<Button-1>', lambda event:pos(event,(7,8)))
+
+            l57=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l57.place(x=350,y=550)
+            l57.bind('<Button-1>', lambda event:pos(event,(8,1)))
+
+            l58=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l58.place(x=398,y=550)
+            l58.bind('<Button-1>', lambda event:pos(event,(8,2)))
+
+            l59=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l59.place(x=446,y=550)
+            l59.bind('<Button-1>', lambda event:pos(event,(8,3)))
+
+            l60=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l60.place(x=494,y=550)
+            l60.bind('<Button-1>', lambda event:pos(event,(8,4)))
+
+            l61=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l61.place(x=542,y=550)
+            l61.bind('<Button-1>', lambda event:pos(event,(8,5)))
+
+            l62=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l62.place(x=590,y=550)
+            l62.bind('<Button-1>', lambda event:pos(event,(8,6)))
+
+            l63=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l63.place(x=638,y=550)
+            l63.bind('<Button-1>', lambda event:pos(event,(8,7)))
+
+            l64=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l64.place(x=686,y=550)
+            l64.bind('<Button-1>', lambda event:pos(event,(8,8)))
+
+            Button(ventana,text=8,command=lambda:boton(8),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=565)
+        if size==9:
+            l65=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l65.place(x=734,y=60)
+            l65.bind('<Button-1>', lambda event:pos(event,(1,9)))
+
+            l66=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l66.place(x=734,y=130)
+            l66.bind('<Button-1>', lambda event:pos(event,(2,9)))
+
+            l67=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l67.place(x=734,y=200)
+            l67.bind('<Button-1>', lambda event:pos(event,(3,9)))
+
+            l68=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l68.place(x=734,y=270)
+            l68.bind('<Button-1>', lambda event:pos(event,(4,9)))
+
+            l69=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l69.place(x=734,y=340)
+            l69.bind('<Button-1>', lambda event:pos(event,(5,9)))
+
+            l70=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l70.place(x=734,y=410)
+            l70.bind('<Button-1>', lambda event:pos(event,(6,9)))
+
+            l71=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l71.place(x=734,y=480)
+            l71.bind('<Button-1>', lambda event:pos(event,(7,9)))
+
+            l72=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l72.place(x=734,y=550)
+            l72.bind('<Button-1>', lambda event:pos(event,(8,9)))
+
+            l73=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l73.place(x=350,y=620)
+            l73.bind('<Button-1>', lambda event:pos(event,(9,1)))
+
+            l74=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l74.place(x=398,y=620)
+            l74.bind('<Button-1>', lambda event:pos(event,(9,2)))
+
+            l75=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l75.place(x=446,y=620)
+            l75.bind('<Button-1>', lambda event:pos(event,(9,3)))
+
+            l76=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l76.place(x=494,y=620)
+            l76.bind('<Button-1>', lambda event:pos(event,(9,4)))
+
+            l77=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l77.place(x=542,y=620)
+            l77.bind('<Button-1>', lambda event:pos(event,(9,5)))
+
+            l78=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l78.place(x=590,y=620)
+            l78.bind('<Button-1>', lambda event:pos(event,(9,6)))
+
+            l79=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l79.place(x=638,y=620)
+            l79.bind('<Button-1>', lambda event:pos(event,(9,7)))
+
+            l80=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l80.place(x=686,y=620)
+            l80.bind('<Button-1>', lambda event:pos(event,(9,8)))
+
+            l81=Label(ventana,width=4,heigh=3,bg="white",bd=2,relief="solid",font=("Arial",14))
+            l81.place(x=734,y=620)
+            l81.bind('<Button-1>', lambda event:pos(event,(9,9)))
+            
+            Button(ventana,text=9,command=lambda:boton(9),bg="black",fg="white",font=("Helvetica",14)).place(x=300,y=635)
 
     #Nombre del jugador
     nombre=StringVar()
-    Label(ventana,text="Nombre del jugador",bg="yellow",font=("Helvetica",14)).place(x=200,y=600)
+    Label(ventana,text="     Nombre del jugador     ",bg="yellow",font=("Helvetica",14)).place(x=5,y=5)
     entryName = Entry(ventana,textvariable=nombre,font=("Helvetica",14))
-    entryName.place(x=375,y=600)
-    name=Button(ventana,text="Guardar",command=lambda:guardarJugador(),bg="white",font=("Helvetica",12))
-    name.place(x=375,y=630)
+    entryName.place(x=5,y=35)
+    name=Button(ventana,text="Guardar",bg="white",command=lambda:guardarJugador(),font=("Helvetica",12))
+    name.place(x=5,y=65)
 
-    def guardarJugada(var):
-        global jugadas, posc
-        if var == "si":
-            jugadas.append([btn,posc])
-            print(jugadas)
-
-    def deshacerJugadas():
-        global jugadas #[[num puesto, label], [num puesto,label]]
-        copia = jugadas
-        copia.reverse()
-        copia[1:]
-        for i in range(len(copia)):
-            if copia[i][1] == posc:
-                boton(copia[i][0],"no")
-            
-                
-        
-        
     #Botones principales del juego
-    Button(ventana,text="Iniciar\nJuego",command=lambda:crear_juego(creado,"Si"),bg="red",font=("Helvetica",14)).place(x=200,y=500)
-    Button(ventana,text="Validar\nJuego",command=lambda:validarCeldas(),bg="green2",font=("Helvetica",14)).place(x=350,y=500)
-    Button(ventana,text="Otro\nJuego",command=lambda:otroJuego("No"),bg="lightblue",font=("Helvetica",14)).place(x=500,y=500)
-    Button(ventana,text="Reiniciar\nJuego",command=lambda:reiniciar("No"),bg="orange",font=("Helvetica",14)).place(x=650,y=500)
-    Button(ventana,text="Terminar\nJuego",command=lambda:terminar(),bg="pink",font=("Helvetica",14)).place(x=800,y=500)
-    Button(ventana,text="TOP\n10",command=lambda:top10(),bg="#518251",font=("Helvetica",14)).place(x=800,y=600)
-    Button(ventana,text="Deshacer\nJugada",command=deshacerJugadas,bg="lightblue",font=("Helvetica",14)).place(x=850,y=600)
-    #Button(ventana,text="Rehacer\nJugada",command=lambda:top10(),bg="#518251",font=("Helvetica",14)).place(x=800,y=600)
+    Button(ventana,text="Iniciar\nJuego",command=lambda:crear_juego(creado,"Si"),bg="red",font=("Helvetica",14)).place(x=60,y=120)
+    Button(ventana,text="Validar\nJuego",command=lambda:validarCeldas(),bg="green2",font=("Helvetica",14)).place(x=60,y=200)
+    Button(ventana,text="Otro\nJuego",command=lambda:otroJuego("No"),bg="lightblue",font=("Helvetica",14)).place(x=60,y=280)
+    Button(ventana,text="Reiniciar\nJuego",command=lambda:reiniciar("No"),bg="orange",font=("Helvetica",14)).place(x=60,y=360)
+    Button(ventana,text="Terminar\nJuego",command=lambda:terminar(),bg="pink",font=("Helvetica",14)).place(x=60,y=440)
+    Button(ventana,text="Borrar",command=lambda:boton(""),bg="black",fg="white",font=("Helvetica",14)).place(x=60,y=520)
 
-        
-        
-    def rehacerJugadas():
-        pass
-
-        
-    borrador = PhotoImage(file="borrador.png")
-    Button(ventana,text="Borrar",image = borrador,command=lambda:boton("",""),bg="#4682b4",fg="white",font=("Helvetica",14)).place(x=800,y=380)
-    def boton(num,var): #Aca se coloca los valores cada label
-        global posc,listo,creado,pausado,btn
-        btn = num
+    def boton(num): #Aca se coloca los valores cada label
+        global posc,listo,creado,pausado
         if listo=="Si": #Verificamos que el usuario haya puesto su nombre
             if creado=="Si": #Vemos que exissta un juego creado
                 if pausado=="No": #Vemos que el juego no este pausado
                     if posc==():
                         return messagebox.showinfo("ERROR","PRIMERO DEBE SELECCIONAR UNA CASILLA")
-                    elif posc==(1,1):
-                        uno['text']=num
-                        guardarJugada(var)
-                    elif posc==(1,2):
-                        dos['text']=num
-                        guardarJugada(var)
-                    elif posc==(1,3):
-                        tres['text']=num
-                        guardarJugada(var)
-                    elif posc==(1,4):
-                        cuatro['text']=num
-                        guardarJugada(var)
-                    elif posc==(1,5):
-                        cinco['text']=num
-                        guardarJugada(var)
-                    elif posc==(1,6):
-                        seis['text']=num
-                        guardarJugada(var)
-                    elif posc==(2,1):
-                        siete['text']=num
-                        guardarJugada(var)
-                    elif posc==(2,2):
-                        ocho['text']=num
-                        guardarJugada(var)
-                    elif posc==(2,3):
-                        nueve['text']=num
-                        guardarJugada(var)
-                    elif posc==(2,4):
-                        diez['text']=num
-                        guardarJugada(var)
-                    elif posc==(2,5):
-                        once['text']=num
-                        guardarJugada(var)
-                    elif posc==(2,6):
-                        doce['text']=num
-                        guardarJugada(var)
-                    elif posc==(3,1):
-                        trece['text']=num
-                        guardarJugada(var)
-                    elif posc==(3,2):
-                        catorce['text']=num
-                        guardarJugada(var)
-                    elif posc==(3,3):
-                        quince['text']=num
-                        guardarJugada(var)
-                    elif posc==(3,4):
-                        dieciseis['text']=num
-                        guardarJugada(var)
-                    elif posc==(3,5):
-                        diecisiete['text']=num
-                        guardarJugada(var)
-                    elif posc==(3,6):
-                        dieciocho['text']=num
-                        guardarJugada(var)
-                    elif posc==(4,1):
-                        diecinueve['text']=num
-                        guardarJugada(var)
-                    elif posc==(4,2):
-                        veinte['text']=num
-                        guardarJugada(var)
-                    elif posc==(4,3):
-                        veintiuno['text']=num
-                        guardarJugada(var)
-                    elif posc==(4,4):
-                        veintidos['text']=num
-                        guardarJugada(var)
-                    elif posc==(4,5):
-                        veintitres['text']=num
-                        guardarJugada(var)
-                    elif posc==(4,6):
-                        veinticuatro['text']=num
-                        guardarJugada(var)
-                    elif posc==(5,1):
-                        veinticinco['text']=num
-                        guardarJugada(var)
-                    elif posc==(5,2):
-                        veintiseis['text']=num
-                        guardarJugada(var)
-                    elif posc==(5,3):
-                        veintisiete['text']=num
-                        guardarJugada(var)
-                    elif posc==(5,4):
-                        veintiocho['text']=num
-                        guardarJugada(var)
-                    elif posc==(5,5):
-                        veintinueve['text']=num
-                        guardarJugada(var)
-                    elif posc==(5,6):
-                        treinta['text']=num
-                        guardarJugada(var)
-                    elif posc==(6,1):
-                        treintauno['text']=num
-                        guardarJugada(var)
-                    elif posc==(6,2):
-                        treintados['text']=num
-                        guardarJugada(var)
-                    elif posc==(6,3):
-                        treintatres['text']=num
-                        guardarJugada(var)
-                    elif posc==(6,4):
-                        treintacuatro['text']=num
-                        guardarJugada(var)
-                    elif posc==(6,5):
-                        treintacinco['text']=num
-                        guardarJugada(var)
-                    elif posc==(6,6):
-                        treintaseis['text']=num
-                        guardarJugada(var)
+                    else:
+                        etiquetas={(1,1):l1,(1,2):l2,(1,3):l3,(1,4):l10,(1,5):l17,(1,6):l26,(1,7):l37,(1,8):l50,(1,9):l65,\
+                        (2,1):l4,(2,2):l5,(2,3):l6,(2,4):l11,(2,5):l18,(2,6):l27,(2,7):l38,(2,8):l51,(2,9):l66,\
+                        (3,1):l7,(3,2):l8,(3,3):l9,(3,4):l12,(3,5):l19,(3,6):l28,(3,7):l39,(3,8):l52,(3,9):l67,\
+                        (4,1):l13,(4,2):l14,(4,3):l15,(4,4):l16,(4,5):l20,(4,6):l29,(4,7):l40,(4,8):l53,(4,9):l68,\
+                        (5,1):l21,(5,2):l22,(5,3):l23,(5,4):l24,(5,5):l25,(5,6):l30,(5,7):l41,(5,8):l54,(5,9):l69,\
+                        (6,1):l31,(6,2):l32,(6,3):l33,(6,4):l34,(6,5):l35,(6,6):l36,(6,7):l42,(6,8):l55,(6,9):l70,\
+                        (7,1):l43,(7,2):l44,(7,3):l45,(7,4):l46,(7,5):l47,(7,6):l48,(7,7):l49,(7,8):l56,(7,9):l71,\
+                        (8,1):l57,(8,2):l58,(8,3):l59,(8,4):l60,(8,5):l61,(8,6):l62,(8,7):l63,(8,8):l64,(8,9):l72,\
+                        (9,1):l73,(9,2):l74,(9,3):l75,(9,4):l76,(9,5):l77,(9,6):l78,(9,7):l79,(9,8):l80,(9,9):l81}
+
+                        etiquetas[posc]['text']=num #Se pone el valor en el label
                 else:
                     return messagebox.showinfo("ERROR","EL JUEGO ESTA PAUSADO")
             else:
                 return messagebox.showinfo("ERROR","NO HA INICIADO NINGUN JUEGO")
         else:
             return messagebox.showinfo("ERROR","EL JUGADOR NO HA DADO SU NOMBRE")
-        
-    #Teclado numerico
-    Button(ventana,text=1,command=lambda:boton(1,"si"),bg="black",fg="white",font=("Helvetica",14)).place(x=700,y=75)
-    Button(ventana,text=2,command=lambda:boton(2,"si"),bg="black",fg="white",font=("Helvetica",14)).place(x=700,y=145)
-    Button(ventana,text=3,command=lambda:boton(3,"si"),bg="black",fg="white",font=("Helvetica",14)).place(x=700,y=215)
-    Button(ventana,text=4,command=lambda:boton(4,"si"),bg="black",fg="white",font=("Helvetica",14)).place(x=700,y=285)
-    Button(ventana,text=5,command=lambda:boton(5,"si"),bg="black",fg="white",font=("Helvetica",14)).place(x=700,y=355)
-    Button(ventana,text=6,command=lambda:boton(6,"si"),bg="black",fg="white",font=("Helvetica",14)).place(x=700,y=425)
     
+    labels() #Funcion que retorna una cuadricula nxn
     mainloop()
 
 def configuracion(ventana): #Ventana de la configuracion, recibe la ventana del menu
     ventana.destroy() #Se destruye la ventana del menu
     config = Tk()
     config.title("Configuracion")
-    config.geometry('500x600')
+    config.geometry('850x600')
     config.resizable(False,False)
     config.config(bg="CadetBlue")
 
     def guardar(): #Se guarda la informacion
+        try:
+            file=open('kenken_configuración.dat').readlines()
+        except:
+            pass
         archivo=open('kenken_configuración.dat','w')
         try:
-            archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+str(int(h.get())*10000+int(m.get())*100+int(s.get())))
+            archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+opcionSize.get()+file[4])
         except:
-            archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get())
+            archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+opcionSize.get())
         archivo.close()
         verCronometro()
 
@@ -1054,20 +919,20 @@ def configuracion(ventana): #Ventana de la configuracion, recibe la ventana del 
                 return messagebox.showinfo("ERROR","EL TIMER NO DEBE EMPEZAR EN 0")
             elif horas==0 and minutos==0: #Caso especial
                 archivo=open('kenken_configuración.dat','w')
-                archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+"000"+str(segundos))
+                archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+opcionSize.get()+"000"+str(segundos))
                 archivo.close()
             elif horas==0: #Caso especial
                 if minutos>9:
                     archivo=open('kenken_configuración.dat','w')
-                    archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+"0"+str(minutos*100+segundos))
+                    archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+opcionSize.get()+"0"+str(minutos*100+segundos))
                     archivo.close()
                 else:
                     archivo=open('kenken_configuración.dat','w')
-                    archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+"00"+str(minutos*100+segundos))
+                    archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+opcionSize.get()+"00"+str(minutos*100+segundos))
                     archivo.close()
             else:
                 archivo=open('kenken_configuración.dat','w')
-                archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+str(horas*10000+minutos*100+segundos))
+                archivo.write(opcionDificultad.get()+opcionReloj.get()+opcionSonido.get()+opcionSize.get()+str(horas*10000+minutos*100+segundos))
                 archivo.close()
         except: #Mensaje de error ya que los elementos no eran numeros
             messagebox.showinfo("ERROR","LOS VALORES DEL TIMER DEBEN SER NUMEROS ENTEROS")
@@ -1076,9 +941,9 @@ def configuracion(ventana): #Ventana de la configuracion, recibe la ventana del 
         archivo=open("kenken_configuración.dat").readlines()
         if archivo[1]=="timer\n":
             try: #Vemos si ya habia un tiempo configurado
-                h.set(int(archivo[3][:1]))
-                m.set(int(archivo[3][1:3]))
-                s.set(int(archivo[3][3:5]))
+                h.set(int(archivo[4][:1]))
+                m.set(int(archivo[4][1:3]))
+                s.set(int(archivo[4][3:5]))
             except:
                 pass
             #Aparecen los entries
@@ -1098,17 +963,20 @@ def configuracion(ventana): #Ventana de la configuracion, recibe la ventana del 
     opcionDificultad = StringVar() #Contiene la dificultad
     opcionReloj = StringVar() #Contiene el tipo de juego (reloj,timer o ninguno)
     opcionSonido = StringVar() #En caso de que desee un sonido
+    opcionSize = StringVar() #Medida de la cuadricula
     
     try: #Se trata de leer el archivo
         guardado=open("kenken_configuración.dat").readlines() #Se obtiene una lista con los datos guardados de la configuracion
         opcionDificultad.set(guardado[0])
         opcionReloj.set(guardado[1])
         opcionSonido.set(guardado[2])
+        opcionSize.set(guardado[3])
         verCronometro()        
     except: #Por defecto
         opcionDificultad.set("F\n")
         opcionReloj.set("relojSi\n")
         opcionSonido.set("sonidoNo\n")
+        opcionSize.set("6\n")
         guardar()
 
 
@@ -1126,6 +994,16 @@ def configuracion(ventana): #Ventana de la configuracion, recibe la ventana del 
     Label(config, text = "3. Sonido cuando termina el juego exitosamente",bg="lightgreen",font=("Helvetica",12)).place(x=20,y= 420)
     Radiobutton(config,text="No",bg="CadetBlue",variable = opcionSonido, value = "sonidoNo\n",command = guardar,font=("Helvetica",11)).place(x=100,y=450)
     Radiobutton(config,text="Sí",bg="CadetBlue",variable = opcionSonido, value = "sonidoSi\n",command = guardar,font=("Helvetica",11)).place(x=100,y=500)
+    #Tamaño de la cuadricula
+    Label(config, text = "4. Definir tamaño de la cuadricula",bg="lightgreen",font=("Helvetica",12)).place(x=500,y= 50)
+    Radiobutton(config,text="3x3",bg="CadetBlue",variable = opcionSize, value = "3\n",command = guardar,font=("Helvetica",11)).place(x=500,y=100)
+    Radiobutton(config,text="4x4",bg="CadetBlue",variable = opcionSize, value = "4\n",command = guardar,font=("Helvetica",11)).place(x=500,y=150)
+    Radiobutton(config,text="5x5",bg="CadetBlue",variable = opcionSize, value = "5\n",command = guardar,font=("Helvetica",11)).place(x=500,y=200)
+    Radiobutton(config,text="6x6",bg="CadetBlue",variable = opcionSize, value = "6\n",command = guardar,font=("Helvetica",11)).place(x=500,y=250)
+    Radiobutton(config,text="7x7",bg="CadetBlue",variable = opcionSize, value = "7\n",command = guardar,font=("Helvetica",11)).place(x=500,y=300)
+    Radiobutton(config,text="8x8",bg="CadetBlue",variable = opcionSize, value = "8\n",command = guardar,font=("Helvetica",11)).place(x=500,y=350)
+    Radiobutton(config,text="9x9",bg="CadetBlue",variable = opcionSize, value = "9\n",command = guardar,font=("Helvetica",11)).place(x=500,y=400)
+    Radiobutton(config,text="Multitamaño",bg="CadetBlue",variable = opcionSize, value = "M\n",command = guardar,font=("Helvetica",11)).place(x=500,y=450)
 
     regresar=Button(config,text="Regresar",command=lambda:menu("Si",config),bg="lightgreen",font=("Helvetica",12)).place(x=20,y=550)
 
@@ -1133,7 +1011,6 @@ def configuracion(ventana): #Ventana de la configuracion, recibe la ventana del 
 
 
 def menu(opcion,window): #Recibe Si para eliminar la ventana de configuracion o de jugarKenken
-    global dific
     if opcion=="Si": #Se usa para destruir la ventana anterior
         window.destroy()
     ventana= Tk()
@@ -1152,7 +1029,7 @@ def menu(opcion,window): #Recibe Si para eliminar la ventana de configuracion o 
     helps=Button(ventana,text="Ayuda",command=lambda:os.startfile("manual_de_usuario_kenken.pdf"),bg="white",font=("Helvetica",14)).place(x=262,y=80)
 
     #Permite conocer un poco sobre la tarea
-    acerca=Button(ventana,text="Acerca de",command=lambda:messagebox.showinfo("Acerca de","Nombre del programa: Kenken \nVersión: 1.0 \nCreacion: 01/10/2018 \nAutores: Mariela Murillo Artavia\n                Mauricio Gamboa Godínez"),bg="white",font=("Helvetica",14))
+    acerca=Button(ventana,text="Acerca de",command=lambda:messagebox.showinfo("Acerca de","Nombre del programa: Kenken \nVersión: 2.0 \nCreacion: 29/10/2018 \nAutores: Mariela Murillo Artavia\n                Mauricio Gamboa Godínez"),bg="white",font=("Helvetica",14))
     acerca.place(x=360,y=80)
 
     #Boton salir
