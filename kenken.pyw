@@ -308,7 +308,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             for numero in lista:
                 temporal+= str(numero)+operacion
             try:
-                result= int(eval(temporal[:-1]))
+                result=eval(temporal[:-1])
             except:
                 return False
             if result!=resultado:
@@ -427,6 +427,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                         timer()
                     elif configuracion[1]=="timer\n" and configuracion[3][1]=="M" and tipo=="Timer":
                         timer()
+                    Label(ventana,width=28,heigh=19,bg="#4682b4",font=("Helvetica",12)).place(x=850,y=200)
                 else:
                     if configuracion[1]=="timer\n" and tipo=="Timer":
                         timer()
@@ -906,7 +907,9 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             copia.reverse()
             for i in copia:
                 if i[0] == posc:
+                    posiblesJugadas()
                     return boton(i[1],'no')
+            posiblesJugadas()
             boton('','no')
 
     def rehacerJugadas():
@@ -923,6 +926,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             posc = rehacer[-1][0]
             numero = rehacer[-1][1]
             jugadas+=[rehacer.pop()]
+            posiblesJugadas()
             return boton(numero,'no')
 
     def posiblesJugadas():
@@ -933,9 +937,108 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             if posc in juego[llave]:
                 operacion = juego[llave][0]
                 cantidad = len(juego[llave])-1
-                #operaciones(operacion,cantidad)
-                print(operacion,cantidad)
+                if cantidad==1:
+                    colocarOpciones(juego[llave][1:],[[int(operacion)]],[])
+                elif cantidad==2:
+                    buenas_y_malas(posibilidades(combinaciones2(),operacion),juego[llave][1:])
+                elif cantidad==3:
+                    buenas_y_malas(posibilidades(combinaciones3(),operacion),juego[llave][1:])
+                elif cantidad==4:
+                    buenas_y_malas(posibilidades(combinaciones4(),operacion),juego[llave][1:])
                 break
+
+    def combinaciones2():
+        archivo=open("kenken_configuración.dat").readlines()
+        size=int(archivo[3][0])
+        lista=[]
+        for num1 in range(1,size+1):
+            for num2 in range(1,size+1):
+                lista+=[[num1,num2]]
+        return lista
+
+    def combinaciones3():
+        archivo=open("kenken_configuración.dat").readlines()
+        size=int(archivo[3][0])
+        lista=[]
+        for num1 in range(1,size+1):
+            for num2 in range(1,size+1):
+                for num3 in range(1,size+1):
+                    lista+=[[num1,num2,num3]]
+        return lista
+
+    def combinaciones4():
+        archivo=open("kenken_configuración.dat").readlines()
+        size=int(archivo[3][0])
+        lista=[]
+        for num1 in range(1,size+1):
+            for num2 in range(1,size+1):
+                for num3 in range(1,size+1):
+                    for num4 in range(1,size+1):
+                        lista+=[[num1,num2,num3,num4]]
+        return lista
+
+    def posibilidades(combinaciones,operacion):
+        resultado = int(operacion[:-1]) #el número
+        operador = operacion[-1]
+        lista=[]
+        if operador=="x":
+            operador="*"
+        for sublista in combinaciones:
+            result=""
+            copia=sublista.copy()
+            copia.sort()
+            copia.reverse()
+            for numero in copia:
+                result+=str(numero)+operador
+            result=eval(result[:-1])
+            if resultado==result:
+                lista+=[sublista]
+        return lista
+
+    def buenas_y_malas(posibles,tuplas):
+        buenas=[]
+        malas=[]
+        for sublista in posibles:
+            indice=0
+            dic={}
+            for numero in sublista:
+                if numero in dic:
+                    dic[numero]+=[tuplas[indice]]
+                    indice+=1
+                else:
+                    dic[numero]=[tuplas[indice]]
+                    indice+=1
+
+            buena="Si"   
+            for llave in dic:
+                fila=dic[llave][0][0]
+                columna=dic[llave][0][1]
+                for tupla in dic[llave][1:]:
+                    if tupla[0]==fila or tupla[1]==columna:
+                        buena="No"
+            if buena=="Si":
+                buenas+=[sublista]
+            else:
+                malas+=[sublista]
+                
+        colocarOpciones(tuplas,buenas,malas)
+
+    def colocarOpciones(tuplas,buenas,malas):
+        Label(ventana,text="Posibles Jugadas",bg="yellow",font=("Helvetica",16)).place(x=890,y=200)
+        Label(ventana,text="SI",bg="lightgreen",font=("Helvetica",14)).place(x=883,y=267)
+        Label(ventana,text="NO",bg="red",font=("Helvetica",14)).place(x=1027,y=267)
+        LbTuplas=Listbox(ventana,width=20,heigh=1,font=("Helvetica",14))
+        LbTuplas.place(x=860,y=235)
+        LbTuplas.insert(END,str(list(tuplas)))
+        LbBuenas=Listbox(ventana,width=8,heigh=10,font=("Helvetica",14))
+        LbBuenas.place(x=850,y=300)
+        for buena in buenas:
+            LbBuenas.insert(END,str(buena))
+
+        LbMalas=Listbox(ventana,width=8,heigh=10,font=("Helvetica",14))
+        LbMalas.place(x=1000,y=300)
+        for mala in malas:
+            LbMalas.insert(END,str(mala))
 
     def guardarPartida():
         global listo,creado,juego,jugadas,tipo
@@ -1026,6 +1129,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
     def incializar(inicio):
         global creado
         creado="Si"
+        inicio.destroy()
         
     def sacarCronometro(inicio):
         global count,creado
