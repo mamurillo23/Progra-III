@@ -1,3 +1,6 @@
+#Mauricio Gamboa
+#Maariela Artavia
+
 import random
 from tkinter import *
 from tkinter import messagebox
@@ -12,10 +15,11 @@ repetidos=[] #Acumula los juegos que van saliendo para que no salgan repetidos
 count=0 #Se usa para el cronometro y timer
 pausado="No" #Para saber si el juego esta pausado o no (cronometro y timer)
 tipo="Timer" #Ayuda cuando el timer tiene que pasar a cronometro
-proceso=0
-cargado="No"
-rehacer = []
-jugadas = []
+proceso=0 #Ayuda en la parte de cronometro y timer
+cargado="No" #Ayuda cuando se carga un juego
+rehacer = [] #Acumula jugadas para rehacer
+jugadas = [] #Acumula las jugadas que se van haciendo
+#Variables para colocar las cuadriculas
 l1=l2=l3=l4=l5=l6=l7=l8=l9=l10=l11=l12=l13=l14=l15=l16=l17=l18=l19=l20=l21=l22=l23=l24=l25=l26=l27=l28=l29=l30=l31=l32=l33=l34=l35=l36=l37=l38=l39=l40=l41=l42=\
 l43=l44=l45=l46=l47=l48=l49=l50=l51=l52=l53=l54=l55=l56=l57=l58=l59=l60=l61=l62=l63=l64=l65=l66=l67=l68=l69=l70=l71=l72=l73=l74=l75=l76=l77=l78=l79=l80=l81=0
 
@@ -29,6 +33,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
     global posc,juego,listo,creado,repetidos,count,pausado,proceso,rehacer,jugadas,cargado
     global l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,l40,l41,\
     l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,l79,l80,l81
+
     #Siempre se inicializan de esta forma
     posc=()
     repetidos=[]
@@ -100,7 +105,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
 
         etiquetas[posicion].config(bg=color) #Se configura un label gracias al diccionario
         
-    def partidasGuardadas(): #Pone en un diccionario las partidas de acuerdo a su dificultad
+    def partidasGuardadas(): #Pone en un diccionario las partidas de acuerdo a su dificultad y tamaño
         partidas=open('kenken_juegos.dat')
         nivel=open("kenken_configuración.dat").readlines()[3][0] #Contiene el tipo de cuadricula de la configuracion
         dic={"F":[],"I":[],"D":[]} #Guarda las partidas que correspondan a la cuadricula configurada en diccionarios segun su dificultad
@@ -188,7 +193,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             return messagebox.showinfo("ERROR","EL JUGADOR NO HA DADO SU NOMBRE")
 
     def otroJuego(opcion): #Crea otro juego
-        global creado,listo,tipo,rehacer,jugadas
+        global creado,listo,tipo
         if listo=="Si": #Vericamos que el usuari haya puesto su nombre
             if creado=="Si": #Vemos si ya hay un juego creado
                 configuracion=open("kenken_configuración.dat").readlines()
@@ -201,8 +206,6 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 if opcion=="No":
                     opcion=messagebox.askquestion("OTRO JUEGO", "¿ESTA SEGURO DE TERMINAR ESTE JUEGO Y EMPEZAR CON OTRO?", icon='warning')
                 if opcion=="yes": #En caso de que desee otro juego, ademas se reinicia el timer o cronometro si estan configurados
-                    rehacer = []
-                    jugadas = []
                     if tipo=="Cronometro":
                         tipo="Timer"
                     reiniciar("yes")
@@ -394,7 +397,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
         labels=[l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,\
         l40,l41,l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,\
         l79,l80,l81]
-        global creado,listo,tipo
+        global creado,listo,tipo,jugadas,rehacer
         if listo=="Si":
             if creado=="Si":
                 configuracion=open("kenken_configuración.dat").readlines()
@@ -412,6 +415,8 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                             label['text']=""
                     except:
                         pass
+                    rehacer = []
+                    jugadas = []
                     if configuracion[1]=="relojSi\n":
                         hours['text']=0
                         minuts['text']=0
@@ -519,7 +524,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
         posc = tupla
         posiblesJugadas()
 
-    def labels():
+    def labels(): #Funcion que permite realizar un cuadricula de nxn
         global l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15,l16,l17,l18,l19,l20,l21,l22,l23,l24,l25,l26,l27,l28,l29,l30,l31,l32,l33,l34,l35,l36,l37,l38,l39,l40,l41,\
         l42,l43,l44,l45,l46,l47,l48,l49,l50,l51,l52,l53,l54,l55,l56,l57,l58,l59,l60,l61,l62,l63,l64,l65,l66,l67,l68,l69,l70,l71,l72,l73,l74,l75,l76,l77,l78,l79,l80,l81
 
@@ -886,11 +891,11 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
     Button(ventana,text="Cargar\nJuego",command=lambda:cargarJuego(),bg="white",font=("Helvetica",14)).place(x=160,y=440)
     Button(ventana,text="  Borrar  \n",command=lambda:boton("","si"),bg="black",fg="white",font=("Helvetica",14)).place(x=160,y=280)
         
-    def guardarJugadas(num):
+    def guardarJugadas(num): #Guarda las jugadas que se vayan realizando
         global posc,jugadas
         jugadas+=[[posc,num]]
         
-    def deshacerJugadas():
+    def deshacerJugadas(): #Permite deshacer una jugada
         global jugadas,rehacer,posc,listo,creado
         if listo=="No":
             return messagebox.showinfo("ERROR","EL JUGADOR NO HA DADO SU NOMBRE")
@@ -912,7 +917,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             posiblesJugadas()
             boton('','no')
 
-    def rehacerJugadas():
+    def rehacerJugadas(): #Rehace las jugadas que se hayan deshecho anteriormente
         global rehacer,jugadas,posc,listo,creado,pausado
         if listo=="No":
             return messagebox.showinfo("ERROR","EL JUGADOR NO HA DADO SU NOMBRE")
@@ -929,25 +934,25 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             posiblesJugadas()
             return boton(numero,'no')
 
-    def posiblesJugadas():
+    def posiblesJugadas(): #Permite mostrar las posibles jugadas de una celda de la cuadricula
         global posc, juego
         operacion = 0
         cantidad = 0
         for llave in juego:
             if posc in juego[llave]:
-                operacion = juego[llave][0]
-                cantidad = len(juego[llave])-1
-                if cantidad==1:
+                operacion = juego[llave][0] #Contiene la operacion, ya sea 20x, 14+...; e incluso puede ser un solo numero
+                cantidad = len(juego[llave])-1 #Contiene la cantidad de celdas que se ocupan para realizar una operacion
+                if cantidad==1: #En caso de que solo sea un casilla, por ende solo hay un numero
                     colocarOpciones(juego[llave][1:],[[int(operacion)]],[])
-                elif cantidad==2:
+                elif cantidad==2: #Para 2 celdas
                     buenas_y_malas(posibilidades(combinaciones2(),operacion),juego[llave][1:])
-                elif cantidad==3:
+                elif cantidad==3: #Para 3 celdas
                     buenas_y_malas(posibilidades(combinaciones3(),operacion),juego[llave][1:])
-                elif cantidad==4:
+                elif cantidad==4: #Para 4 celdas
                     buenas_y_malas(posibilidades(combinaciones4(),operacion),juego[llave][1:])
                 break
 
-    def combinaciones2():
+    def combinaciones2(): #Retorna todas las combinaciones para 2 casillas
         archivo=open("kenken_configuración.dat").readlines()
         size=int(archivo[3][0])
         lista=[]
@@ -956,7 +961,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 lista+=[[num1,num2]]
         return lista
 
-    def combinaciones3():
+    def combinaciones3(): #Retorna todas las combinaciones para 3 casillas
         archivo=open("kenken_configuración.dat").readlines()
         size=int(archivo[3][0])
         lista=[]
@@ -966,7 +971,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                     lista+=[[num1,num2,num3]]
         return lista
 
-    def combinaciones4():
+    def combinaciones4(): #Retorna todas las combinaciones para 4 casillas
         archivo=open("kenken_configuración.dat").readlines()
         size=int(archivo[3][0])
         lista=[]
@@ -977,7 +982,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                         lista+=[[num1,num2,num3,num4]]
         return lista
 
-    def posibilidades(combinaciones,operacion):
+    def posibilidades(combinaciones,operacion): #Determina cuales combinaciones dan la respectiva operacion
         resultado = int(operacion[:-1]) #el número
         operador = operacion[-1]
         lista=[]
@@ -995,7 +1000,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 lista+=[sublista]
         return lista
 
-    def buenas_y_malas(posibles,tuplas):
+    def buenas_y_malas(posibles,tuplas): #Determina cuales de las soluciones no se pueden poner en el juego, ya sea porque un numero se repite en una misma fila o colummna
         buenas=[]
         malas=[]
         for sublista in posibles:
@@ -1023,7 +1028,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
                 
         colocarOpciones(tuplas,buenas,malas)
 
-    def colocarOpciones(tuplas,buenas,malas):
+    def colocarOpciones(tuplas,buenas,malas): #Coloca las combinaciones que se pueden realizar y cuales no, ademas muestra la celda seleccionada
         Label(ventana,text="Posibles Jugadas",bg="yellow",font=("Helvetica",16)).place(x=890,y=200)
         Label(ventana,text="SI",bg="lightgreen",font=("Helvetica",14)).place(x=883,y=267)
         Label(ventana,text="NO",bg="red",font=("Helvetica",14)).place(x=1027,y=267)
@@ -1040,7 +1045,7 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
         for mala in malas:
             LbMalas.insert(END,str(mala))
 
-    def guardarPartida():
+    def guardarPartida(): #Guarda la partida actual
         global listo,creado,juego,jugadas,tipo
         if listo=="Si": #Verificamos que el usuario haya puesto su nombre
             if creado=="Si": #Vemos que exista un juego creado
@@ -1064,19 +1069,19 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
         else:
             return messagebox.showinfo("ERROR","EL JUGADOR NO HA DADO SU NOMBRE")
 
-    def cargarJuego():
+    def cargarJuego(): #Carga un juego guardado anteriormente
         global listo,cargado
         if listo=="Si":
             return messagebox.showinfo("ERROR","EL JUGADOR YA HA DADO SU NOMBRE")
         else:
-            try:
+            try: #Vemos si existe el archivo
                 archivo=open("kenken_juegoactual.dat").readlines()
                 cargado="Si"
                 jugarKenken(ventana)
             except:
                 return messagebox.showinfo("ERROR","AUN NO EXISTE UN JUEGO GUARDADO")
 
-    def cargarJuegoAux():
+    def cargarJuegoAux(): #Funcion que permite cargar todos los datos guardados anteriormente en el archivo kenken_juegoactual.dat
         global listo,creado,juego,posc,tipo,pausado
 
         archivo=open("kenken_juegoactual.dat").readlines()
@@ -1126,19 +1131,19 @@ def jugarKenken(ventana): #Recibe la ventana del menu y la destruye
             inicio=Button(ventana,text="Iniciar\nJuego",command=lambda:incializar(inicio),bg="red",font=("Helvetica",14))
             inicio.place(x=60,y=120)
             
-    def incializar(inicio):
+    def incializar(inicio): #Solo se usa al cargar un juego guardado sin reloj o timer y poder iniciar
         global creado
         creado="Si"
         inicio.destroy()
         
-    def sacarCronometro(inicio):
+    def sacarCronometro(inicio): #Solo se usa al cargar un juego guardado con reloj y poder iniciar
         global count,creado
         creado="Si"
         inicio.destroy()
         count=seconds['text']
         cronometro()
 
-    def sacarTimer(inicio):
+    def sacarTimer(inicio): #Solo se usa al cargar un juego guardado con timer y poder iniciar
         global count,creado
         creado="Si"
         inicio.destroy()
